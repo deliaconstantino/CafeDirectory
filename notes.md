@@ -1,11 +1,12 @@
-Cafe -- (Attr: Name, City, State, Hours, Table/Chair Seating, Speciality, Outdoor Seating, Wifi, Cushioned Seating, Food)
+Cafe -- (Attr: Name, City, State, Speciality, Table/Chair Seating, Outdoor Seating, Wifi, Cushioned Seating, Food)
+- Hours--add later--string or datetime with open and close columns?
 
 - has_many reviews
 - has_many users, through reviews
 - has_many cafe_categories
 - has_many categories, through cafe_categories
 
-User -- (Attr: Username, Password, Email)
+User -- (Attr: Username, Password (digest for DB), Email)
 
 - has_many reviews
 - has_many coffeeshops through reviews
