@@ -1,5 +1,5 @@
 Cafe -- (Attr: Name, City, State, Speciality, Table/Chair Seating, Outdoor Seating, Wifi, Cushioned Seating, Food)
-- Hours--add later--string or datetime with open and close columns?
+- Hours--add later--string or datetime with open and close columns? --thinking do basic UTC datetime and not worry about timezones. Then search based on a standard -open late menaing open past blank time
 
 - has_many reviews
 - has_many users, through reviews

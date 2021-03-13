@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  root to: 'sessions#welcome'
+
+  get '/signup', to: 'users#new'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+
   resources :categories
   resources :reviews
   resources :users

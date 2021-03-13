@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_12_180027) do
+ActiveRecord::Schema.define(version: 2021_03_13_220223) do
+
+  create_table "cafe_categories", force: :cascade do |t|
+    t.integer "cafe_id", null: false
+    t.integer "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cafe_id"], name: "index_cafe_categories_on_cafe_id"
+    t.index ["category_id"], name: "index_cafe_categories_on_category_id"
+  end
 
   create_table "cafes", force: :cascade do |t|
     t.string "name"
@@ -24,6 +33,8 @@ ActiveRecord::Schema.define(version: 2021_03_12_180027) do
     t.boolean "food"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "open"
+    t.integer "close"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -51,6 +62,8 @@ ActiveRecord::Schema.define(version: 2021_03_12_180027) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "cafe_categories", "cafes"
+  add_foreign_key "cafe_categories", "categories"
   add_foreign_key "reviews", "cafes"
   add_foreign_key "reviews", "users"
 end
