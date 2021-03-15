@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_13_220223) do
+ActiveRecord::Schema.define(version: 2021_03_15_170451) do
 
   create_table "cafe_categories", force: :cascade do |t|
     t.integer "cafe_id", null: false
@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 2021_03_13_220223) do
     t.boolean "food"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "open"
-    t.integer "close"
+    t.integer "open_hour"
+    t.integer "close_hour"
+    t.integer "open_minute"
+    t.integer "close_minute"
   end
 
   create_table "categories", force: :cascade do |t|
