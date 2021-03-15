@@ -8,17 +8,18 @@
   <%= f.text_field :city %><br><br>
 
   <%= f.label :state %>
-  <%= f.select :state, ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'] %>
+  <%= f.select :state, options_for_select(['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']), { include_blank: true} %>
   <br><br>
 
+
   <%= f.label :'opening time' %>
-  <%= f.select :open_hour, (0..23) %> :
-  <%= f.select :open_min, ['00', '15', '30', '45'] %>
+  <%= f.select :open_hour, (0..23), include_blank: true %> :
+  <%= f.select :open_minute, options_for_select(['00', '15', '30', '45']), { include_blank: true } %>
   <br><br>
 
   <%= f.label :'closing time' %>
-  <%= f.select :close_hour, (0..23) %> :
-  <%= f.select :close_min, ['00', '15', '30', '45'] %>
+  <%= f.select :close_hour, (0..23), include_blank: true %> :
+  <%= f.select :close_minute, options_for_select(['00', '15', '30', '45']), { include_blank: true} %>
   <br><br>
 
   <%= f.label :speciality %>
