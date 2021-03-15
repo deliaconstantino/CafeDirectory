@@ -1,0 +1,58 @@
+<h1>Add a Cafe to the Directory:</h1>
+
+<%= form_with(model: @cafe) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br><br>
+
+  <%= f.label :city %>
+  <%= f.text_field :city %><br><br>
+
+  <%= f.label :state %>
+  <%= f.select :state, ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'] %>
+  <br><br>
+
+  <%= f.label :'opening time' %>
+  <%= f.select :open_hour, (0..23) %> :
+  <%= f.select :open_min, ['00', '15', '30', '45'] %>
+  <br><br>
+
+  <%= f.label :'closing time' %>
+  <%= f.select :close_hour, (0..23) %> :
+  <%= f.select :close_min, ['00', '15', '30', '45'] %>
+  <br><br>
+
+  <%= f.label :speciality %>
+  <%= f.text_field :speciality %><br><br>
+
+  <%= f.label :'sells food?' %>
+  <%= f.radio_button :food, "1" %>
+  <%= f.label :food, "Yes" %>
+  <%= f.radio_button :food, "0" %>
+  <%= f.label :food, "No" %><br><br>
+
+  <%= f.label :'Wifi?' %>
+  <%= f.radio_button :wifi, "1" %>
+  <%= f.label :wifi, "Yes" %>
+  <%= f.radio_button :wifi, "0" %>
+  <%= f.label :wifi, "No" %><br><br>
+
+  <%= f.label :'has tables & chairs?' %>
+  <%= f.radio_button :table_chair_seating, "1" %>
+  <%= f.label :table_chair_seating, "Yes" %>
+  <%= f.radio_button :table_chair_seating, "0" %>
+  <%= f.label :table_chair_seating, "No" %><br><br>
+
+  <%= f.label :'has cushioned seating?' %>
+  <%= f.radio_button :cushioned_seating, "1" %>
+  <%= f.label :cushioned_seating, "Yes" %>
+  <%= f.radio_button :cushioned_seating, "0" %>
+  <%= f.label :cushioned_seating, "No" %><br><br>
+
+  <%= f.label :'has outdoor seating?' %>
+  <%= f.radio_button :outdoor_seating, "1" %>
+  <%= f.label :outdoor_seating, "Yes" %>
+  <%= f.radio_button :outdoor_seating, "0" %>
+  <%= f.label :outdoor_seating, "No" %><br><br>
+
+  <%= f.submit %>
+<% end %>

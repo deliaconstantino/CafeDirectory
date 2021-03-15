@@ -17,5 +17,14 @@
       <% end %>
     <% end %>
     <%= yield %>
+
+    <% if logged_in? %>
+      <br>
+      <%= form_tag logout_path, method: :delete do %>
+        <%= submit_tag 'Log Out' %>
+      <% end %>
+    <% end %>
+
   </body>
+
 </html>
