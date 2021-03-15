@@ -45,6 +45,6 @@
   <p><%= @cafe.reviews.last.content %></p>
 <% end %>
 
-<%= link_to "Add a Review!", new_review_path %>
+<%= link_to "Add a Review!", new_cafe_review_path(@cafe) %>
 
 <br>
