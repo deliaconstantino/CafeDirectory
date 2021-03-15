@@ -33,4 +33,18 @@
 
 </ul>
 
+<%= button_to "Edit Info", edit_cafe_path(@cafe) %>
+
+<br>
+<h3>Reviews: </h3>
+<% if @cafe.reviews.empty? %>
+  <h4>No reviews yet</h4>
+<% else %>
+  <h4>Latest review: </h4>
+  <h5>By: <%= @cafe.reviews.last.user.username %></h5>
+  <p><%= @cafe.reviews.last.content %></p>
+<% end %>
+
+<%= link_to "Add a Review!", new_review_path %>
+
 <br>

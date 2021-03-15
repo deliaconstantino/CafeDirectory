@@ -1,4 +1,10 @@
-<h1>check cafe index page</h1>
-<% @cafes.each do |c| %>
-  <p><%= c.name %></p>
-<% end %>
+<h1>Cafe Directory</h1>
+<h3>The Cafe Directory is user generated. Click <%= link_to "here", new_cafe_path %> to add a cafe to our list!</h3>
+<ul>
+  <% @cafes.each do |cafe| %>
+    <li>
+      <%= link_to cafe.name, cafe_path(cafe) %>
+      Location: <%= cafe.city %>, <%= cafe.state %>
+    </li>
+  <% end %>
+</ul>

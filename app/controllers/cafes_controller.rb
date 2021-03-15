@@ -5,6 +5,7 @@ class CafesController < ApplicationController
 
   def new
     @cafe = Cafe.new
+    render :edit
   end
 
   def create
@@ -19,6 +20,20 @@ class CafesController < ApplicationController
 
   def show
     @cafe = Cafe.find_by(id: params[:id])
+  end
+
+  def edit
+    @cafe = Cafe.find_by(id: params[:id])
+  end
+
+  def update
+    @cafe = Cafe.find_by(id: params[:id])
+    if @cafe.update(cafe_params)
+      redirect_to cafe_path(@cafe)
+    else
+      flash.now[:message] = @cafe.errors.full_messages
+      render :edit
+    end
   end
 
   private
