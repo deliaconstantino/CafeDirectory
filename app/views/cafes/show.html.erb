@@ -1,10 +1,36 @@
 <h1><%= @cafe.name %></h1>
 
-t.string "city"
-t.string "state"
-t.string "speciality"
-t.boolean "table_chair_seating"
-t.boolean "cushioned_seating"
-t.boolean "outdoor_seating"
-t.boolean "wifi"
-t.boolean "food"
+<h3>Location: <%= @cafe.city %>, <%= @cafe.state %></h3>
+
+<% if @cafe.speciality %>
+  <h3>Known for: <%= @cafe.speciality %></h3>
+<% end %>
+
+<%= form_for @cafe do |f| %>
+  <%= f.label "Has Wifi?" %>
+  <%= f.check_box :wifi %> <br />
+
+  <%= f.label "Sells Food?" %>
+  <%= f.check_box :food %> <br />
+<% end %>
+
+<h3>Seating Options: </h3>
+
+<ul>
+  <% if @cafe.table_chair_seating %>
+    <li>Table and Chair Seating</li>
+  <% end %>
+  <% if @cafe.cushioned_seating %>
+    <li>Cushioned Seating</li>
+  <% end %>
+  <% if @cafe.outdoor_seating %>
+    <li>Outdoor Seating</li>
+  <% end %>
+
+  <% if [@cafe.table_chair_seating, @cafe.cushioned_seating, @cafe.outdoor_seating].none?(true) %>
+    <h4>Add a seating option for this cafe</h4>
+  <% end %>
+
+</ul>
+
+<br>
