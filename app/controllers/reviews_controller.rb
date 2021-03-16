@@ -31,6 +31,22 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find_by(id: params[:id])
+    if @review && @review.user == helpers.current_user
+      render :show
+    else
+      redirect_to cafes_path
+    end
+
+  end
+
+  def destroy
+    @review = Review.find_by(id: params[:id])
+    if @review && @review.user == helpers.current_user
+        @review.destroy
+        redirect_to user_path(helpers.current_user)
+    else
+      redirect_to cafes_path
+    end
   end
 
   private

@@ -1,1 +1,9 @@
-<%= @review.content %>
+<h1><%= @review.cafe.name %></h1>
+
+<h3>Your rating: <% @review.rating.times do %>
+  *
+<% end %></h3>
+<p><%= @review.content %></p>
+
+
+<%= button_to "Edit", edit_review_path(@review) %> <%= button_to "Delete", review_path(@review), method: :delete %>
