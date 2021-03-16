@@ -1,0 +1,11 @@
+<h1><%= @reviews.first.cafe.name %></h1>
+
+<% @reviews.each do |review| %>
+
+  <h2><% review.rating.times do %>
+    *
+  <% end %> || <%= review.user.username %> says: </h2>
+  <p><%= review.content %></p>
+  <br>
+  <br>
+<% end %>

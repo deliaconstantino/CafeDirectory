@@ -2,7 +2,7 @@
 
 <%= form_with model: @review do |f| %>
   <%= f.label :'Select a rating' %>
-  <%= f.select :rating, (1..5) %><br>
+  <%= f.select :rating, (1..5), include_blank: true %><br>
 
   <%= f.hidden_field :cafe_id %>
 

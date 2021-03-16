@@ -36,13 +36,18 @@
 <%= button_to "Edit Info", edit_cafe_path(@cafe) %>
 
 <br>
-<h3>Reviews: </h3>
+<h3>Reviews </h3>
 <% if @cafe.reviews.empty? %>
   <h4>No reviews yet</h4>
 <% else %>
+  <% review = @cafe.reviews.last %>
   <h4>Latest review: </h4>
-  <h5>By: <%= @cafe.reviews.last.user.username %></h5>
-  <p><%= @cafe.reviews.last.content %></p>
+  <h4><% review.rating.times do %>
+    *
+  <% end %> || <%= review.user.username %> says: </h4>
+  <p><%= review.content %></p>
+  <br>
+  <h4>Click <%= link_to "here", cafe_reviews_path(@cafe) %> to see all reviews!</h4>
 <% end %>
 
 <%= link_to "Add a Review!", new_cafe_review_path(@cafe) %>

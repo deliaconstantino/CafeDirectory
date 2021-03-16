@@ -1,1 +1,18 @@
 <h1><%= @user.username %></h1>
+
+<h2>Your Cafes:</h2>
+
+<% if @user.reviews.present? %>
+  <ol>
+    <% @user.reviews.each do |review| %>
+      <li>
+        <%= link_to review.cafe.name, cafe_path(review.cafe) %> :
+        <% review.rating.times do %>
+          *
+        <% end %>
+      <li>
+    <% end %>
+  </ol>
+<% else %>
+  <h3>You haven't reviewed any cafes yet. Check out our <%= link_to "cafe directory", cafes_path %> to add a review!</h3>
+<% end %>
