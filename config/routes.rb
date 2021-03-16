@@ -8,11 +8,11 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   resources :reviews #question: reviews nested new path fails when I don't have it listed here as well as in the nested spot below. Why?
+  resources :categories
   resources :cafes do
     resources :reviews, shallow: true  #index, new, create actions
+    resources :categories, shallow: true  #index, new, create actions
   end
-
-  resources :categories
 
   resources :users
 

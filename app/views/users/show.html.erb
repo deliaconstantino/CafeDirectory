@@ -3,16 +3,18 @@
 <h2>Your Cafes:</h2>
 
 <% if @user.reviews.present? %>
-  <ol>
+  <ul>
     <% @user.reviews.each do |review| %>
-      <li>
-        <%= link_to review.cafe.name, cafe_path(review.cafe) %> :
-        <% review.rating.times do %>
-          *
-        <% end %>
-      <li>
+        <li><h4> Visited:  <%= link_to review.cafe.name, cafe_path(review.cafe) %> on
+          <%= review.created_at.strftime("%b %d, %Y") %>.
+
+          Rated:
+          <% review.rating.times do %>
+            *
+          <% end %></h4>
+        </li>
     <% end %>
-  </ol>
+  </ul>
 <% else %>
   <h3>You haven't reviewed any cafes yet. Check out our <%= link_to "cafe directory", cafes_path %> to add a review!</h3>
 <% end %>

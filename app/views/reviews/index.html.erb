@@ -4,8 +4,7 @@
 
   <h2><% review.rating.times do %>
     *
-  <% end %> || <%= review.user.username %> says: </h2>
+  <% end %> | <%= review.user.username %> says: </h2>
   <p><%= review.content %></p>
-  <br>
   <br>
 <% end %>

@@ -11,20 +11,41 @@
   </head>
 
   <body>
-    <% if flash[:message] %>
-      <% flash[:message].each do |message| %>
-        <p><%= message %></p>
-      <% end %>
-    <% end %>
-    <%= yield %>
-
     <% if logged_in? %>
-      <br>
-      <%= form_tag logout_path, method: :delete do %>
-        <%= submit_tag 'Log Out' %>
-      <% end %>
+      <header class='clearfix'>
+        <div class="far-right-nav">
+          <ul>
+            <li>
+              <%= link_to('Logout', {:controller => "sessions", :action => 'destroy'}, :method => :delete) %>
+            </li>
+          </ul>
+        </div>
+        <div class="left-nav">
+          <ul>
+            <li><%= link_to "Cafes", cafes_path %>  </li>
+          </ul>
+        </div>
+        <div class="right-nav">
+          <ul>
+            <li>
+              <%= link_to " Profile", user_path(current_user) %>
+            </li>
+          </ul>
+        </div>
+      </header>
     <% end %>
 
+    <div class="errors">
+      <% if flash[:message] %>
+        <% flash[:message].each do |message| %>
+          <p><%= message %></p>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="content">
+      <%= yield %>
+    </div>
   </body>
 
 </html>

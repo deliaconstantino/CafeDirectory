@@ -1,0 +1,31 @@
+header {
+  background: grey;
+  padding: 10px;
+  ul {
+    margin: 0;
+    list-style-type: none;
+  }
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+  }
+}
+
+
+.clearfix {
+  float: none;
+  padding: 15px;
+}
+
+.far-right-nav {
+  float: right;
+}
+
+.left-nav {
+  float: right;
+}
+
+.right-nav {
+  float: right;
+}

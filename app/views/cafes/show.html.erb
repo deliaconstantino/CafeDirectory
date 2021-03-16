@@ -35,6 +35,15 @@
 
 <%= button_to "Edit Info", edit_cafe_path(@cafe) %>
 
+<h3>Categories: </h3>
+  <% if @cafe.categories.present? %>
+    <% @cafe.categories. each do |cat| %>
+      #<%= cat.name %>
+    <% end %>
+  <% end %>
+  <br>
+<%= link_to "Add a category?", new_cafe_category_path(@cafe) %>
+
 <br>
 <h3>Reviews </h3>
 <% if @cafe.reviews.empty? %>
@@ -44,7 +53,7 @@
   <h4>Latest review: </h4>
   <h4><% review.rating.times do %>
     *
-  <% end %> || <%= review.user.username %> says: </h4>
+  <% end %> | <%= review.user.username %> says: </h4>
   <p><%= review.content %></p>
   <br>
   <h4>Click <%= link_to "here", cafe_reviews_path(@cafe) %> to see all reviews!</h4>
