@@ -1,8 +1,11 @@
 class CategoriesController < ApplicationController
 
   def new
-    # binding.pry
-    if @cafe = Cafe.find_by(id: params[:cafe_id])
+    binding.pry
+
+    @cafe = Cafe.find_by(id: params[:cafe_id])
+    if @cafe
+      @categories = Category.all
       @category = Category.new
     else
       flash[:message] = ["Please choose a cafe to create a new category."]
@@ -11,7 +14,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    # binding.pry
+    binding.pry
     @category = Category.new(category_params)
     @cafe = Cafe.find_by(id: params[:cafe_id])
 
@@ -24,9 +27,16 @@ class CategoriesController < ApplicationController
   end
 
 
+
+
   private
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :cafe_ids => [])
   end
 end
+
+# <% @categories.each do |cat| %>
+#   <%= check_box_tag("cafe[category][]", cat.id) %>
+#   <%= cat.name %><br>
+# <% end %>

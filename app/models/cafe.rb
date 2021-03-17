@@ -12,4 +12,20 @@ class Cafe < ApplicationRecord
   validates :open_minute, presence: true
   validates :close_hour, presence: true
   validates :close_minute, presence: true
+
+  accepts_nested_attributes_for :categories
+
+  def category_name=(name)
+    # binding.pry
+    category = Category.find_or_create_by(name: name)
+    if category && !self.categories.include?(category)
+      self.categories << category
+      self.save
+    end
+  end
+
+  # def category_name
+  #   binding.pry
+  #   self.categories.present? ? self.categories : nil
+  # end
 end

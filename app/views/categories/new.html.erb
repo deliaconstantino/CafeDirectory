@@ -1,9 +1,20 @@
-<%= form_for([@cafe, @category]) do |f| %>
+<%= form_tag  %>
+
+
+
+
+
+
+
+<%= form_for([@category]) do |f| %>
 
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name %><br>
 
-
+  <%= f.collection_select :cafe_ids, @categories, :id, :name %>
 
   <%= f.submit %>
 <% end %>
+
+
+<input type="hidden" name="category[cafe_ids][]" value="">

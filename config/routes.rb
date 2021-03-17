@@ -11,8 +11,12 @@ Rails.application.routes.draw do
   resources :categories
   resources :cafes do
     resources :reviews, shallow: true  #index, new, create actions
-    resources :categories, shallow: true  #index, new, create actions
+    resources :categories, shallow: true do
+      get 'accept', :on => :new, to: 'cafes#accept'
+    end #index, new, create actions
   end
+
+  # accept_cafe_category_path()
 
   resources :users
 
