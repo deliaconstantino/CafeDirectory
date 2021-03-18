@@ -3,7 +3,7 @@
 <%= form_with model: @cafe do |f| %>
 
   <%= f.label :category_name %>
-  <%= f.text_field :category_name, :value => "" %><br><br>
+  <%= f.text_field :'category_attributes[name]', :value => "" %><br><br>
 
     <%= f.collection_check_boxes( :category_ids, Category.all, :id, :name ) %>
 

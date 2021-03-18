@@ -15,19 +15,23 @@ class Cafe < ApplicationRecord
 
   accepts_nested_attributes_for :categories
 
-  def category_name=(name)
-    # binding.pry
-    if !name.empty?
-      category = Category.find_or_create_by(name: name)
-      if category && !self.categories.include?(category)
-        self.categories << category
-        self.save
-      end
-    end
+  def category_attributes=(name)
+    self.categories << Category.find_or_create_by(name: name[:name])
   end
 
-  def category_name
-    # binding.pry
-    self.categories.present? ? self.categories : nil
-  end
+  # def category_name=(name)
+  #   # binding.pry
+  #   if !name.empty?
+  #     category = Category.find_or_create_by(name: name)
+  #     if category && !self.categories.include?(category)
+  #       self.categories << category
+  #       self.save
+  #     end
+  #   end
+  # end
+
+  # def category_name
+  #   binding.pry
+  #   self.categories.present? ? self.categories : nil
+  # end
 end

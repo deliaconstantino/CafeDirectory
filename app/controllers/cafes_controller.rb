@@ -29,14 +29,18 @@ class CafesController < ApplicationController
   end
 
   def update
-    binding.pry
+    # binding.pry
     @cafe = Cafe.find_by(id: params[:id])
-    if @cafe.update(cafe_params)
-      redirect_to cafe_path(@cafe)
-    else
-      flash.now[:message] = @cafe.errors.full_messages
-      render :edit
-    end
+    # if params[:cafe][:category_name]
+    #   @
+
+    # else
+      if @cafe.update(cafe_params)
+        redirect_to cafe_path(@cafe)
+      else
+        flash.now[:message] = @cafe.errors.full_messages
+        render :edit
+      end
   end
 
   def accept
@@ -49,7 +53,9 @@ class CafesController < ApplicationController
   private
 
   def cafe_params
-    params.require(:cafe).permit(:name, :city, :state, :speciality, :table_chair_seating, :cushioned_seating, :outdoor_seating, :wifi, :food, :open_hour, :open_minute, :close_hour, :close_minute, :category_name, :category_ids => [])
+    params.require(:cafe).permit(:name, :city, :state, :speciality, :table_chair_seating, :cushioned_seating, :outdoor_seating, :wifi, :food, :open_hour, :open_minute, :close_hour, :close_minute,  category_attributes: [:name], :category_ids => [])
+
+
   end
 end
 
