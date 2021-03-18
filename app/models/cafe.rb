@@ -16,7 +16,9 @@ class Cafe < ApplicationRecord
   accepts_nested_attributes_for :categories
 
   def category_attributes=(name)
-    self.categories << Category.find_or_create_by(name: name[:name])
+    if !name[:name].empty?
+      self.categories << Category.find_or_create_by(name: name[:name])
+    end
   end
 
   # def category_name=(name)
