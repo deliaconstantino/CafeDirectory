@@ -16,3 +16,6 @@
   <p><%= review.content %></p>
   <br>
 <% end %>
+
+
+<%= link_to "Add a Review!", new_cafe_review_path(@reviews.first.cafe) %>

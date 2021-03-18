@@ -55,6 +55,8 @@ class ReviewsController < ApplicationController
     if @review.update(review_params)
       redirect_to cafe_reviews_path(@review.cafe)
     else
+      flash[:message] = @review.errors.full_messages
+      @cafe = @review.cafe
       render :edit
     end
   end

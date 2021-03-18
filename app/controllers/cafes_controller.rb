@@ -41,7 +41,7 @@ class CafesController < ApplicationController
 
   def accept
     # raise params.inspect
-    @cafe = Cafe.find_by(params[:cafe_id])
+    @cafe = Cafe.find_by(id: params[:cafe_id])
     @category = @cafe.categories.build
     @categories = Category.all
   end
