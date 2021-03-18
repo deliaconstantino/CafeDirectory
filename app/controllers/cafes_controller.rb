@@ -19,12 +19,10 @@ class CafesController < ApplicationController
   end
 
   def show
-
     @cafe = Cafe.find_by(id: params[:id])
   end
 
   def edit
-
     @cafe = Cafe.find_by(id: params[:id])
   end
 
@@ -49,10 +47,6 @@ class CafesController < ApplicationController
 
   def cafe_params
     params.require(:cafe).permit(:name, :city, :state, :speciality, :table_chair_seating, :cushioned_seating, :outdoor_seating, :wifi, :food, :open_hour, :open_minute, :close_hour, :close_minute,  category_attributes: [:name], :category_ids => [])
-
-
   end
+
 end
-
-
-# <%= f.collection_check_boxes :category_ids, @categories, :id, :name %><br><br>
