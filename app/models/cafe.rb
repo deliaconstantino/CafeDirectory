@@ -17,10 +17,12 @@ class Cafe < ApplicationRecord
 
   def category_name=(name)
     # binding.pry
-    category = Category.find_or_create_by(name: name)
-    if category && !self.categories.include?(category)
-      self.categories << category
-      self.save
+    if !name.empty?
+      category = Category.find_or_create_by(name: name)
+      if category && !self.categories.include?(category)
+        self.categories << category
+        self.save
+      end
     end
   end
 
