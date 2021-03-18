@@ -5,7 +5,7 @@
   <%= f.label :category_name %>
   <%= f.text_field :category_name, :value => "" %><br><br>
 
-    <%= collection_check_boxes(:cafe, :category_ids, Category.all, :id, :name) %>
+    <%= f.collection_check_boxes( :category_ids, Category.all, :id, :name ) %>
 
   <%= f.submit :"Edit Categories" %>
 <% end %>

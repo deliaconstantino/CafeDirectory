@@ -24,8 +24,8 @@ class Cafe < ApplicationRecord
     end
   end
 
-  # def category_name
-  #   binding.pry
-  #   self.categories.present? ? self.categories : nil
-  # end
+  def category_name
+    # binding.pry
+    self.categories.present? ? self.categories : nil
+  end
 end
