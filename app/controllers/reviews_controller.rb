@@ -36,7 +36,27 @@ class ReviewsController < ApplicationController
     else
       redirect_to cafes_path
     end
+  end
 
+  def edit
+    # binding.pry
+    @review = Review.find_by(id: params[:id])
+    if helpers.current_user.reviews.include?(@review)
+      @cafe = @review.cafe
+    else
+      flash[:message] = ['You can only edit your own reviews.']
+      redirect_to cafes_path
+    end
+  end
+
+  def update
+    # binding.pry
+    @review = Review.find_by(id: params[:id])
+    if @review.update(review_params)
+      redirect_to cafe_reviews_path(@review.cafe)
+    else
+      render :edit
+    end
   end
 
   def destroy

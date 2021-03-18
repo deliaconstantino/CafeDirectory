@@ -6,4 +6,8 @@
 <p><%= @review.content %></p>
 
 
-<%= button_to "Edit", edit_review_path(@review) %> <%= button_to "Delete", review_path(@review), method: :delete %>
+<% if current_user.reviews.include?(@review) %>
+
+<%= link_to "Edit", edit_review_path(@review) %> <%= button_to "Delete", review_path(@review), method: :delete %>
+
+<% end %>

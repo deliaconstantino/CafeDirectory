@@ -1,10 +1,18 @@
-<h1><%= @reviews.first.cafe.name %></h1>
+<h1><%= link_to @reviews.first.cafe.name, cafe_path(@reviews.first.cafe) %></h1>
 
 <% @reviews.each do |review| %>
 
-  <h2><% review.rating.times do %>
+  <h2>
+
+  <%= review.user.username %>
+    <% if !review.content.empty? %>
+    says:
+    <% end %>
+    <br>
+    <h2><% review.rating.times do %>
     *
-  <% end %> | <%= review.user.username %> says: </h2>
+  <% end %>
+  </h2>
   <p><%= review.content %></p>
   <br>
 <% end %>

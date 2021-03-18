@@ -5,7 +5,7 @@
 <% if @user.reviews.present? %>
   <ul>
     <% @user.reviews.each do |review| %>
-        <li><h4> Visited:  <%= link_to review.cafe.name, cafe_path(review.cafe) %> on
+        <li><h4><%= link_to review.cafe.name, cafe_path(review.cafe) %> on
           <%= review.created_at.strftime("%b %d, %Y") %>.
 
           <%= link_to "Rated:", review_path(review) %>

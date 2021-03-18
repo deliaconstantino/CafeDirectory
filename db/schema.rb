@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_16_211903) do
+ActiveRecord::Schema.define(version: 2021_03_17_213436) do
 
   create_table "cafes", force: :cascade do |t|
     t.string "name"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 2021_03_16_211903) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "open_hour"
     t.integer "close_hour"
-    t.integer "open_minute"
-    t.integer "close_minute"
+    t.string "open_minute"
+    t.string "close_minute"
   end
 
   create_table "cafes_category", force: :cascade do |t|

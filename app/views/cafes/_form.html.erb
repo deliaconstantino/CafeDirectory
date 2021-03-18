@@ -12,12 +12,12 @@
 
   <%= f.label :'opening time' %>
   <%= f.select :open_hour, (0..23), include_blank: true %> :
-  <%= f.select :open_minute, options_for_select(['00', '15', '30', '45'], @cafe.open_minute), { include_blank: true } %>
+  <%= f.select :open_minute, options_for_select(['00', '15', '30', '45'], @cafe.open_minute ), { include_blank: true, selected: @cafe.open_minute } %>
   <br><br>
 
   <%= f.label :'closing time' %>
   <%= f.select :close_hour, (0..23), include_blank: true %> :
-  <%= f.select :close_minute, options_for_select(['00', '15', '30', '45'], @cafe.close_minute ), { include_blank: true } %>
+  <%= f.select :close_minute, options_for_select(['00', '15', '30', '45'], @cafe.close_minute ), { include_blank: true, selected: @cafe.close_minute } %>
   <br><br>
 
   <%= f.label :speciality %>
