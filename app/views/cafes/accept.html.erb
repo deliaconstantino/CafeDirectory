@@ -2,10 +2,15 @@
 
 <%= form_with model: @cafe do |f| %>
 
-  <%= f.label :category_name %>
+  <%= f.label :'Create category name:' %>
   <%= f.text_field :'category_attributes[name]', :value => "" %><br><br>
 
-    <%= f.collection_check_boxes( :category_ids, Category.all, :id, :name ) %>
+  <%= f.label :'and/or select from existing:' %><br>
 
+  <%= f.collection_check_boxes( :category_ids, Category.all, :id, :name ) do |b| %>
+    <%= b.label(:"data-value" => b.value) { b.check_box + b.text } %><br>
+  <% end %>
+
+  <br><br>
   <%= f.submit :"Edit Categories" %>
 <% end %>

@@ -29,12 +29,7 @@ class CafesController < ApplicationController
   end
 
   def update
-    # binding.pry
     @cafe = Cafe.find_by(id: params[:id])
-    # if params[:cafe][:category_name]
-    #   @
-
-    # else
       if @cafe.update(cafe_params)
         redirect_to cafe_path(@cafe)
       else
