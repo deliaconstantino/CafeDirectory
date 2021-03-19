@@ -3,7 +3,7 @@
 <br>
 
 <%= form_with url: "/cafes", method: :get do |f| %>
-  <%= f.label :q, "Search for:" %>
+  <%= f.label :q, "Search by category:" %>
   <%= f.text_field :q %>
   <%= f.submit "Search" %>
 <% end %>
@@ -17,11 +17,13 @@
 <% end %>
 
 <br>
-<ul>
-  <% @cafes.each do |cafe| %>
-    <li>
-      <%= link_to cafe.name, cafe_path(cafe) %>
-      Location: <%= cafe.city %>, <%= cafe.state %>
-    </li>
-  <% end %>
-</ul>
+<% if @cafes %>
+  <ul>
+    <% @cafes.each do |cafe| %>
+      <li>
+        <%= link_to cafe.name, cafe_path(cafe) %>
+        Location: <%= cafe.city %>, <%= cafe.state %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

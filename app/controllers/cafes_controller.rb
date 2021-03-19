@@ -2,19 +2,18 @@ class CafesController < ApplicationController
   before_action :require_login
 
   def index
-    # binding.pry
-    if params[:f]
+    if params[:f] && !params[:f].empty?
       @cafes = Cafe.filter_by_state(params[:f])
-    elsif params[:q]
+    elsif params[:q] && !params[:q].empty?
       @cafes = Cafe.search(params[:q].downcase)
+      flash.now[:message] = ["We could not find content with #{params[:q]}."] if @cafes.nil?
     else
       @cafes = Cafe.all
-    end
+   end
   end
 
   def new
     @cafe = Cafe.new
-    # render :edit
   end
 
   def create
