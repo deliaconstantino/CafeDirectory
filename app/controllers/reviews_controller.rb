@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :require_login
+
   def index
     if params[:cafe_id]
       @reviews = Review.where(cafe_id: params[:cafe_id])
@@ -55,7 +57,7 @@ class ReviewsController < ApplicationController
     if @review.update(review_params)
       redirect_to cafe_reviews_path(@review.cafe)
     else
-      flash[:message] = @review.errors.full_messages
+      flash.now[:message] = @review.errors.full_messages
       @cafe = @review.cafe
       render :edit
     end
@@ -75,6 +77,13 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:rating, :content, :cafe_id)
+  end
+
+  def require_login
+    if !session.include?(:user_id)
+      flash[:message] = ["Please log in or sign up to see this info!"]
+      redirect_to root_path
+    end
   end
 
 end

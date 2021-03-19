@@ -1,5 +1,22 @@
 <h1>Cafe Directory</h1>
 <h3>The Cafe Directory is user generated. Click <%= link_to "here", new_cafe_path %> to add a cafe to our list!</h3>
+<br>
+
+<%= form_with url: "/cafes", method: :get do |f| %>
+  <%= f.label :q, "Search for:" %>
+  <%= f.text_field :q %>
+  <%= f.submit "Search" %>
+<% end %>
+
+<br>
+
+<%= form_with url: "/cafes", method: :get do |f| %>
+  <%= f.label :f, "Filter by state:" %>
+  <%= f.select :f, options_for_select(['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY']), { include_blank: true} %>
+  <%= f.submit "Filter" %>
+<% end %>
+
+<br>
 <ul>
   <% @cafes.each do |cafe| %>
     <li>

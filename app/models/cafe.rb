@@ -15,6 +15,13 @@ class Cafe < ApplicationRecord
 
   accepts_nested_attributes_for :categories
 
+  scope :filter_by_state, -> (params) { where("state = ?", params) }
+
+  # def self.filter_by_state(params)
+  #   # binding.pry
+  #   where(state: params)
+  # end
+
   def category_attributes=(name)
     if !name[:name].empty?
       self.categories << Category.find_or_create_by(name: name[:name])

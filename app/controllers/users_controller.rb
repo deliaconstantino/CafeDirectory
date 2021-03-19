@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:show]
 
   def new
     @user = User.new
@@ -23,5 +24,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :password, :email)
+  end
+
+  def require_login
+    if !session.include?(:user_id)
+      flash[:message] = ["Please log in or sign up to see this info!"]
+      redirect_to root_path
+    end
   end
 end

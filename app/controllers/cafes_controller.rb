@@ -1,11 +1,19 @@
 class CafesController < ApplicationController
+  before_action :require_login
+
   def index
-    @cafes = Cafe.all
+    if params[:f]
+      @cafes = Cafe.filter_by_state(params[:f])
+    else
+      @cafes = Cafe.all
+    end
+    # binding.pry
+
   end
 
   def new
     @cafe = Cafe.new
-    render :edit
+    # render :edit
   end
 
   def create
@@ -47,6 +55,13 @@ class CafesController < ApplicationController
 
   def cafe_params
     params.require(:cafe).permit(:name, :city, :state, :speciality, :table_chair_seating, :cushioned_seating, :outdoor_seating, :wifi, :food, :open_hour, :open_minute, :close_hour, :close_minute,  category_attributes: [:name], :category_ids => [])
+  end
+
+  def require_login
+    if !session.include?(:user_id)
+      flash[:message] = ["Please log in or sign up to see this info!"]
+      redirect_to root_path
+    end
   end
 
 end
