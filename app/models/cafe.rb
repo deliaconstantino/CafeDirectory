@@ -22,6 +22,18 @@ class Cafe < ApplicationRecord
   #   where(state: params)
   # end
 
+  def self.search(params)
+    binding.pry
+    left_outer_joins(:categories).where("LOWER(category.name) LIKE ?", "%#{params}%")
+    # Cafe.where(["name = :name", { name: "%#{params}%"}])
+    #SELECT "cafes".* FROM "cafes" LEFT OUTER JOIN "cafes_category" ON "cafes_category"."cafe_id" = "cafes"."id" LEFT OUTER JOIN "categories" ON "categories"."id" = "cafes_category"."category_id" WHERE (LOWER(name) LIKE '%reading%')
+    #^ need to
+  end
+
+  def self.by_status(status)
+    where(status: status) if status.present?
+  end
+
   def category_attributes=(name)
     if !name[:name].empty?
       self.categories << Category.find_or_create_by(name: name[:name])

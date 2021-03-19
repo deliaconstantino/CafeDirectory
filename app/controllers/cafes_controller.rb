@@ -2,13 +2,14 @@ class CafesController < ApplicationController
   before_action :require_login
 
   def index
+    # binding.pry
     if params[:f]
       @cafes = Cafe.filter_by_state(params[:f])
+    elsif params[:q]
+      @cafes = Cafe.search(params[:q].downcase)
     else
       @cafes = Cafe.all
     end
-    # binding.pry
-
   end
 
   def new
