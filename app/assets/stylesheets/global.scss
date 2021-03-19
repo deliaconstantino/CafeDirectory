@@ -7,6 +7,20 @@ body {
   width: 70%;
 }
 
+.errors {
+  margin: 10px auto;
+  width: 70%;
+}
+
+div {
+  position: initial;
+}
+
+.field_with_errors input, .field_with_errors select {
+  outline-color: red;
+  outline-style: auto;
+}
+
 .clearfix {
   overflow: hidden;
 

@@ -38,7 +38,7 @@
     <div class="errors">
       <% if flash[:message] %>
         <% flash[:message].each do |message| %>
-          <p><%= message %></p>
+          <%= "#{message}. " %>
         <% end %>
       <% end %>
     </div>
