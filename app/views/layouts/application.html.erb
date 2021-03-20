@@ -14,21 +14,28 @@
     <% if logged_in? %>
       <header class='clearfix'>
         <div class="far-right-nav">
-          <ul>
+          <ul class="nav_options">
             <li>
               <%= link_to('Logout', {:controller => "sessions", :action => 'destroy'}, :method => :delete) %>
             </li>
           </ul>
         </div>
+        <div class="right-nav">
+          <ul class="nav_options">
+            <li>
+              <%= link_to " Profile", user_path(current_user) %>
+            </li>
+          </ul>
+        </div>
         <div class="left-nav">
-          <ul>
+          <ul class="nav_options">
             <li><%= link_to "Cafes", cafes_path %>  </li>
           </ul>
         </div>
-        <div class="right-nav">
-          <ul>
+        <div class="far-left-nav">
+          <ul class="nav_options">
             <li>
-              <%= link_to " Profile", user_path(current_user) %>
+              <%= link_to " Add Cafe", new_cafe_path %>
             </li>
           </ul>
         </div>
@@ -46,6 +53,8 @@
     <div class="content">
       <%= yield %>
     </div>
+
+
   </body>
 
 </html>

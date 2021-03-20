@@ -1,16 +1,28 @@
 header {
   background: grey;
+  // background: #FFCC99;
+  // background: #f7dada;
+  // background: #353333;
   padding: 10px;
   ul {
     margin: 0;
     list-style-type: none;
+
   }
   a {
     text-decoration: none;
     font-weight: bold;
     color: white;
+    // color: #f7dada;
   }
 }
+
+// .nav-options ul {
+//   margin: 10px auto;
+//   width: 70%;
+//   // margin-inline-start: 0px;
+//   margin-inline-end: 30px;
+// }
 
 
 .clearfix {
@@ -27,5 +39,9 @@ header {
 }
 
 .right-nav {
+  float: right;
+}
+
+.far-left-nav {
   float: right;
 }

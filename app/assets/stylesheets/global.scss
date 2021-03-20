@@ -1,5 +1,15 @@
 body {
   margin: 0;
+  background-image: url("city-outline-5.png");
+  background-repeat: no-repeat;
+  color: black;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+div .background {
+  opacity: 0.5;
 }
 
 .content {
@@ -23,5 +33,4 @@ div {
 
 .clearfix {
   overflow: hidden;
-
 }
