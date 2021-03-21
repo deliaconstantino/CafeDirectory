@@ -65,3 +65,8 @@ class CafesController < ApplicationController
   end
 
 end
+
+
+# <% Category.select(:name).limit(50).pluck(:name).each do |name| %>
+#   <%= link_to "##{name}", cafes_path(q: name) %>
+# <% end %>

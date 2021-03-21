@@ -12,8 +12,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to user_path(user)
     else
-      flash[:message] = ["Please log in or sign up."]
-      redirect_to root_path
+      flash[:message] = ["We don't recognize that log in. Please try again."]
+      redirect_to login_path
     end
   end
 

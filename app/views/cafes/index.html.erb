@@ -2,6 +2,7 @@
 <h3>The Cafe Directory is user generated. Click <%= link_to "here", new_cafe_path %> to add a cafe to our list!</h3>
 <br>
 
+
 <%= form_with url: "/cafes", method: :get do |f| %>
   <%= f.label :q, "Search by category:" %>
   <%= f.text_field :q %>

@@ -5,9 +5,7 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :email, presence: true, uniqueness: true
 
-
   def self.from_omniauth(auth)
-    # binding.pry
     where(email: auth[:info][:email]).first_or_initialize do |user|
       user.username = auth[:info][:email].split("@").first
       user.email = auth[:info][:email]
