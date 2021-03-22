@@ -37,9 +37,11 @@ class Cafe < ApplicationRecord
     end
   end
 
-  def category_attributes=(name)
-    if !name[:name].empty?
-      self.categories << Category.find_or_create_by(name: name[:name])
+  def category_attributes=(params)
+    name = params[:name]
+    if !name.empty?
+      category = Category.find_or_create_by(name: name.downcase.strip)
+      self.categories << category unless self.categories.include?(category)
     end
   end
 
