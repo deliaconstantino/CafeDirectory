@@ -8,6 +8,8 @@ class Cafe < ApplicationRecord
   validates :city, presence: true
   validates :state, presence: true
 
+  validates :name, uniqueness: {scope: [:city, :state], message: "already exists for this city and state" }
+
   validates :open_hour, presence: true
   validates :open_minute, presence: true
   validates :close_hour, presence: true
@@ -17,14 +19,18 @@ class Cafe < ApplicationRecord
 
   scope :filter_by_state, -> (params) { where("state = ?", params) }
 
-  # def self.filter_by_state(params)
-  #   # binding.pry
-  #   where(state: params)
-  # end
-
   def self.search(params)
-    # binding.pry
-    Category.where("name LIKE ?", "%#{params}%").first.try(:cafes)
+    # require 'pry'; binding.pry
+    cafes = Category.where("name LIKE ?", "%#{params}%").first.try(:cafes)
+    reviews = Review.where("content LIKE ?", "%#{params}%")
+
+    if !!cafes && !!reviews
+      cafes.push(reviews)
+    elsif !!reviews && !cafes
+      cafes = reviews.collect { |review| review.cafe }.uniq
+    else
+      cafes
+    end
     # left_joins(:categories)
     # value = category ? category.cafes : flash.now[:message] =
     # Category.where("name LIKE ?", "%#{params}%").limit(1)[0].cafes

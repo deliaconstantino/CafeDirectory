@@ -6,7 +6,8 @@ class CafesController < ApplicationController
       @cafes = Cafe.filter_by_state(params[:f])
     elsif params[:q] && !params[:q].empty?
       @cafes = Cafe.search(params[:q].downcase)
-      flash.now[:message] = ["We could not find content with #{params[:q]}."] if @cafes.nil?
+      # require 'pry'; binding.pry
+      flash.now[:message] = ["We could not find content with #{params[:q]}."] if @cafes.empty?
     else
       @cafes = Cafe.all
    end
@@ -18,6 +19,7 @@ class CafesController < ApplicationController
 
   def create
     @cafe = Cafe.new(cafe_params)
+    # require 'pry'; binding.pry
     if @cafe.save
       redirect_to cafe_path(@cafe)
     else
