@@ -7,12 +7,16 @@
   <h3>Known for: <%= @cafe.speciality %></h3>
 <% end %>
 
-<%= form_for @cafe do |f| %>
-  <%= f.label "Has Wifi?" %>
-  <%= f.check_box :wifi %> <br />
+<% if @cafe.wifi %>
+  <p>Has Wifi? ☑️</p>
+<% else %>
+  <p>Has Wifi? 🚫 </p>
+<% end %>
 
-  <%= f.label "Sells Food?" %>
-  <%= f.check_box :food %> <br />
+<% if @cafe.food %>
+  <p>Sells Food? ☑️</p>
+<% else %>
+  <p>Sells Food? 🚫 </p>
 <% end %>
 
 <h3>Seating Options: </h3>

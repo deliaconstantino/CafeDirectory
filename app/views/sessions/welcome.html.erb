@@ -1,7 +1,17 @@
 <h1>Cafe Directory</h1>
 
-<h2>
-  <%= link_to "Sign Up", "/signup" %> |
-  <%= link_to "Log In", "/login" %> |
-  <%= link_to "Log In with Google", '/auth/google_oauth2' %>
-</h2>
+<% if logged_in? %>
+  <h2>What would you like to do?</h2>
+  <h3>
+    <%= link_to "Check out the Cafes Directory?", cafes_path %> |
+    <%= link_to "Add a Cafe?", new_cafe_path %> |
+    <%= link_to "See your profile?", user_path(current_user) %>
+  </h3>
+
+<% else %>
+  <h2>
+    <%= link_to "Sign Up", "/signup" %> |
+    <%= link_to "Log In", "/login" %> |
+    <%= link_to "Log In with Google", '/auth/google_oauth2' %>
+  </h2>
+<% end %>
