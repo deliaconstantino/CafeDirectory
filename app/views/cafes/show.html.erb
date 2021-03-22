@@ -20,7 +20,7 @@
     <p>Sells Food? 🚫 </p>
   <% end %>
 
-  <h3>Seating Options: </h3>
+  <h4>Seating Options: </h4>
 
   <ul>
     <% if @cafe.table_chair_seating %>
@@ -42,16 +42,18 @@
   <%= link_to "Edit Info", edit_cafe_path(@cafe) %>
 
   <br>
-  <h3>Known for? </h3>
+
+  <h4>Catgories:
     <% if @cafe.categories.present? %>
-      <% @cafe.categories. each do |cat| %>
+      <% @cafe.categories.each do |cat| %>
         #<%= cat.name %>
       <% end %>
-    <% end %>
+    <% end %></h4>
   <%= link_to "Add a category tag?", accept_new_cafe_category_path(@cafe) %>
 
   <br>
-  <h3>Reviews </h3>
+
+  <h4>Reviews </h4>
   <% if @cafe.reviews.empty? %>
     <h4>No reviews yet</h4>
   <% else %>
@@ -61,7 +63,9 @@
       *
     <% end %> | <%= review.user.username %> says: </h4>
     <p><%= review.content %></p>
+
     <br>
+
     <h4>Click <%= link_to "here", cafe_reviews_path(@cafe) %> to see all reviews!</h4>
   <% end %>
 
@@ -70,6 +74,9 @@
   <br>
 
 <% else %>
+
   <h1>The Cafe Directory needs more user updates!</h1>
+
   <h3>Click <% link_to "here", new_cafe_path %> to add a cafe!</h3>
+
 <% end %>
