@@ -27,8 +27,9 @@ class UsersController < ApplicationController
   end
 
   def require_login
-    if !session.include?(:user_id)
-      flash[:message] = ["Please log in or sign up to see this info!"]
+    if !helpers.logged_in?
+      # !session.include?(:user_id)
+      flash[:message] = ["Please log in or sign up to see this info"]
       redirect_to root_path
     end
   end

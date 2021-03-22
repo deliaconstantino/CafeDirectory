@@ -19,8 +19,12 @@ class Cafe < ApplicationRecord
 
   scope :filter_by_state, -> (params) { where("state = ?", params) }
 
+
+  def self.highly_rated
+    @cafe = Cafe.joins('INNER JOIN reviews ON cafes.id = reviews.cafe_id').group('cafes.id').order('AVG(reviews.rating) DESC').limit(1)[0]
+  end
+
   def self.search(params)
-    # require 'pry'; binding.pry
     cafes = Category.where("name LIKE ?", "%#{params}%").first.try(:cafes)
     reviews = Review.where("content LIKE ?", "%#{params}%")
 
@@ -31,24 +35,6 @@ class Cafe < ApplicationRecord
     else
       cafes
     end
-    # left_joins(:categories)
-    # value = category ? category.cafes : flash.now[:message] =
-    # Category.where("name LIKE ?", "%#{params}%").limit(1)[0].cafes
-    # left_joins(:categories).where("LOWER(category.name) LIKE ?", "%#{params}%")
-    # Cafe.where(["name = :name", { name: "%#{params}%"}])
-    #SELECT "cafes".* FROM "cafes" LEFT OUTER JOIN "cafes_category" ON "cafes_category"."cafe_id" = "cafes"."id" LEFT OUTER JOIN "categories" ON "categories"."id" = "cafes_category"."category_id" WHERE (LOWER(name) LIKE '%reading%')
-    #^ need to
-
-    # Category.where("name LIKE ?", "%#{params}%").cafes
-
-    # scope = Brand.joins(parts: :category).where(categories: { name: 'car' })
-    # scope = scope.select('DISTINCT brands.name').order('brands.name')
-
-    # brand_names_appearing_in_car_category = scope.map(&:name)
-  end
-
-  def self.by_status(status)
-    where(status: status) if status.present?
   end
 
   def category_attributes=(name)

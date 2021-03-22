@@ -16,12 +16,10 @@ Rails.application.routes.draw do
     resources :reviews, shallow: true  #index, new, create actions
     resources :categories, shallow: true do
       get 'accept', :on => :new, to: 'cafes#accept'
-    end #index, new, create actions
+    end
   end
 
-  # accept_cafe_category_path()
-
-  resources :users
+  resources :users, only: [:new, :show, :create]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

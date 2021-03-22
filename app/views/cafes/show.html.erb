@@ -1,69 +1,75 @@
-<h1><%= @cafe.name %></h1>
+<% if @cafe %>
+  <h1><%= @cafe.name %></h1>
 
-<h3>Location: <%= @cafe.city %>, <%= @cafe.state %></h3>
-<h3>Hours: <%= @cafe.open_hour %>:<%= @cafe.open_minute %> - <%= @cafe.close_hour %>:<%= @cafe.close_minute %></h3>
+  <h3>Location: <%= @cafe.city %>, <%= @cafe.state %></h3>
+  <h3>Hours: <%= @cafe.open_hour %>:<%= @cafe.open_minute %> - <%= @cafe.close_hour %>:<%= @cafe.close_minute %></h3>
 
-<% if @cafe.speciality %>
-  <h3>Known for: <%= @cafe.speciality %></h3>
-<% end %>
-
-<% if @cafe.wifi %>
-  <p>Has Wifi? ☑️</p>
-<% else %>
-  <p>Has Wifi? 🚫 </p>
-<% end %>
-
-<% if @cafe.food %>
-  <p>Sells Food? ☑️</p>
-<% else %>
-  <p>Sells Food? 🚫 </p>
-<% end %>
-
-<h3>Seating Options: </h3>
-
-<ul>
-  <% if @cafe.table_chair_seating %>
-    <li>Table and Chair Seating</li>
-  <% end %>
-  <% if @cafe.cushioned_seating %>
-    <li>Cushioned Seating</li>
-  <% end %>
-  <% if @cafe.outdoor_seating %>
-    <li>Outdoor Seating</li>
+  <% if @cafe.speciality %>
+    <h3>Known for: <%= @cafe.speciality %></h3>
   <% end %>
 
-  <% if [@cafe.table_chair_seating, @cafe.cushioned_seating, @cafe.outdoor_seating].none?(true) %>
-    <h4>Add a seating option for this cafe</h4>
+  <% if @cafe.wifi %>
+    <p>Has Wifi? ☑️</p>
+  <% else %>
+    <p>Has Wifi? 🚫 </p>
   <% end %>
 
-</ul>
+  <% if @cafe.food %>
+    <p>Sells Food? ☑️</p>
+  <% else %>
+    <p>Sells Food? 🚫 </p>
+  <% end %>
 
-<%= link_to "Edit Info", edit_cafe_path(@cafe) %>
+  <h3>Seating Options: </h3>
 
-<br>
-<h3>Known for? </h3>
-  <% if @cafe.categories.present? %>
-    <% @cafe.categories. each do |cat| %>
-      #<%= cat.name %>
+  <ul>
+    <% if @cafe.table_chair_seating %>
+      <li>Table and Chair Seating</li>
     <% end %>
-  <% end %>
-<%= link_to "Add a category tag?", accept_new_cafe_category_path(@cafe) %>
+    <% if @cafe.cushioned_seating %>
+      <li>Cushioned Seating</li>
+    <% end %>
+    <% if @cafe.outdoor_seating %>
+      <li>Outdoor Seating</li>
+    <% end %>
 
-<br>
-<h3>Reviews </h3>
-<% if @cafe.reviews.empty? %>
-  <h4>No reviews yet</h4>
-<% else %>
-  <% review = @cafe.reviews.last %>
-  <h4>Latest review: </h4>
-  <h4><% review.rating.times do %>
-    *
-  <% end %> | <%= review.user.username %> says: </h4>
-  <p><%= review.content %></p>
+    <% if [@cafe.table_chair_seating, @cafe.cushioned_seating, @cafe.outdoor_seating].none?(true) %>
+      <h4>Add a seating option for this cafe</h4>
+    <% end %>
+
+  </ul>
+
+  <%= link_to "Edit Info", edit_cafe_path(@cafe) %>
+
   <br>
-  <h4>Click <%= link_to "here", cafe_reviews_path(@cafe) %> to see all reviews!</h4>
+  <h3>Known for? </h3>
+    <% if @cafe.categories.present? %>
+      <% @cafe.categories. each do |cat| %>
+        #<%= cat.name %>
+      <% end %>
+    <% end %>
+  <%= link_to "Add a category tag?", accept_new_cafe_category_path(@cafe) %>
+
+  <br>
+  <h3>Reviews </h3>
+  <% if @cafe.reviews.empty? %>
+    <h4>No reviews yet</h4>
+  <% else %>
+    <% review = @cafe.reviews.last %>
+    <h4>Latest review: </h4>
+    <h4><% review.rating.times do %>
+      *
+    <% end %> | <%= review.user.username %> says: </h4>
+    <p><%= review.content %></p>
+    <br>
+    <h4>Click <%= link_to "here", cafe_reviews_path(@cafe) %> to see all reviews!</h4>
+  <% end %>
+
+  <%= link_to "Add a Review!", new_cafe_review_path(@cafe) %>
+
+  <br>
+
+<% else %>
+  <h1>The Cafe Directory needs more user updates!</h1>
+  <h3>Click <% link_to "here", new_cafe_path %> to add a cafe!</h3>
 <% end %>
-
-<%= link_to "Add a Review!", new_cafe_review_path(@cafe) %>
-
-<br>

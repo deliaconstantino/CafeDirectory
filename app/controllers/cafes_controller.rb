@@ -6,8 +6,7 @@ class CafesController < ApplicationController
       @cafes = Cafe.filter_by_state(params[:f])
     elsif params[:q] && !params[:q].empty?
       @cafes = Cafe.search(params[:q].downcase)
-      # require 'pry'; binding.pry
-      flash.now[:message] = ["We could not find content with #{params[:q]}."] if @cafes.empty?
+      flash.now[:message] = ["We could not find content with #{params[:q]}"] if @cafes.empty?
     else
       @cafes = Cafe.all
    end
@@ -19,7 +18,6 @@ class CafesController < ApplicationController
 
   def create
     @cafe = Cafe.new(cafe_params)
-    # require 'pry'; binding.pry
     if @cafe.save
       redirect_to cafe_path(@cafe)
     else
@@ -29,7 +27,11 @@ class CafesController < ApplicationController
   end
 
   def show
-    @cafe = Cafe.find_by(id: params[:id])
+    if params[:id] == "highly_rated"
+      @cafe = Cafe.highly_rated
+    else
+      @cafe = Cafe.find_by(id: params[:id])
+    end
   end
 
   def edit
@@ -47,7 +49,6 @@ class CafesController < ApplicationController
   end
 
   def accept
-    # raise params.inspect
     @cafe = Cafe.find_by(id: params[:cafe_id])
     @category = @cafe.categories.build
     @categories = Category.all
@@ -60,15 +61,10 @@ class CafesController < ApplicationController
   end
 
   def require_login
-    if !session.include?(:user_id)
-      flash[:message] = ["Please log in or sign up to see this info!"]
+    if !helpers.logged_in?
+      flash[:message] = ["Please log in or sign up to see this info"]
       redirect_to root_path
     end
   end
 
 end
-
-
-# <% Category.select(:name).limit(50).pluck(:name).each do |name| %>
-#   <%= link_to "##{name}", cafes_path(q: name) %>
-# <% end %>
