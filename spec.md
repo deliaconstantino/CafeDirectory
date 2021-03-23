@@ -10,6 +10,7 @@ Specs:
 
 - [x] Include at least two has_many through relationships (x has_many y through z; e.g. Recipe has_many Items through Ingredients)
     - User has_many Cafes through Reviews; Cafe has_many Users through Reviews
+    - Category has_many Cafes through CafesCategory; Cafe has_many Categories through CafesCategory
 
 - [x] Include at least one many-to-many relationship (x has_many y through z, y has_many x through z; e.g. Recipe has_many Items through Ingredients, Item has_many Recipes through Ingredients)
     - User has_many Cafes through Reviews; Cafe has_many Users through Reviews
