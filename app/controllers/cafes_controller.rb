@@ -30,7 +30,6 @@ class CafesController < ApplicationController
     if params[:id] == "highly_rated"
       @cafe = Cafe.highly_rated
     else
-      # require 'pry'; binding.pry
       @cafe = Cafe.find_by(id: params[:id])
     end
   end

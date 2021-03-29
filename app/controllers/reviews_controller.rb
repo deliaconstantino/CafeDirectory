@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
 
   def new
     if !(@cafe = Cafe.find_by(id: params[:cafe_id]))
-      flash[:message] = ["You can only review an existing cafe."]
+      flash[:message] = ["You can only review an existing cafe"]
       redirect_to cafes_path
     else
       @review = Review.new(cafe_id: @cafe.id)
@@ -41,18 +41,16 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    # binding.pry
     @review = Review.find_by(id: params[:id])
     if helpers.current_user.reviews.include?(@review)
       @cafe = @review.cafe
     else
-      flash[:message] = ['You can only edit your own reviews.']
+      flash[:message] = ['You can only edit your own reviews']
       redirect_to cafes_path
     end
   end
 
   def update
-    # binding.pry
     @review = Review.find_by(id: params[:id])
     if @review.update(review_params)
       redirect_to cafe_reviews_path(@review.cafe)
@@ -81,7 +79,7 @@ class ReviewsController < ApplicationController
 
   def require_login
     if !session.include?(:user_id)
-      flash[:message] = ["Please log in or sign up to see this info!"]
+      flash[:message] = ["Please log in or sign up to see this info"]
       redirect_to root_path
     end
   end
