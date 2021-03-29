@@ -25,16 +25,20 @@ class Cafe < ApplicationRecord
   end
 
   def self.search(params)
-    cafes = Category.where("name LIKE ?", "%#{params}%").first.try(:cafes)
+    cafes = Category.where("name LIKE ?", "%#{params}%").first.try(:cafes) || []
     reviews = Review.where("content LIKE ?", "%#{params}%")
 
-    if !!cafes && !!reviews
-      cafes.push(reviews)
-    elsif !!reviews && !cafes
-      cafes = reviews.collect { |review| review.cafe }.uniq
-    else
-      cafes
+    cafes_to_show = []
+
+    cafes.each do |cafe|
+      cafes_to_show << cafe
     end
+
+    reviews.collect { |review| review.cafe }.uniq.each do | cafe|
+      cafes_to_show << cafe
+    end
+
+    cafes_to_show
   end
 
   def category_attributes=(params)
@@ -45,19 +49,4 @@ class Cafe < ApplicationRecord
     end
   end
 
-  # def category_name=(name)
-  #   # binding.pry
-  #   if !name.empty?
-  #     category = Category.find_or_create_by(name: name)
-  #     if category && !self.categories.include?(category)
-  #       self.categories << category
-  #       self.save
-  #     end
-  #   end
-  # end
-
-  # def category_name
-  #   binding.pry
-  #   self.categories.present? ? self.categories : nil
-  # end
 end
